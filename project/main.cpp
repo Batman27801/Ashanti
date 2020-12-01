@@ -11,6 +11,9 @@ int main()
 	TableAccessor.InsertAtBegining(&TableHead);
 	TableAccessor.InitializeTable(&TableHead);
 	TableAccessor.InsertWord(1, "Ist", &TableHead);
-	TableAccessor.InsertWord(2, "Ist", &TableHead);
+	TableAccessor.InsertWord(2, "tsI", &TableHead);
 	TableAccessor.Search("Ist", &TableHead);
+	TableAccessor.Search("tsI", &TableHead);
+	//TableAccessor.Search("A", &TableHead);
+
 }

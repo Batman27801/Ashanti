@@ -4,7 +4,7 @@
 #pragma once
 using namespace std;
 class Table {
-	Postings* PostHead = NULL;
+	Postings* PostHead ;
 	Postings Accessor;
 	int index;
 	string item = "NULL";
