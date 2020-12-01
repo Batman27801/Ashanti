@@ -17,6 +17,7 @@ void Table::InitializeTable(Table **head)
 	{
 		Table* NewNode = new Table;
 		NewNode->index = i;
+		NewNode->PostHead = NULL;
 		temp->next = NewNode;
 		temp = NewNode;
 	}
@@ -47,14 +48,24 @@ void Table::InsertWord(int DocId, string key, Table** head)
 	if (temp->item == "NULL" && temp->item != key)
 	{
 		temp->item = key;
-		Accessor.InsertAtBegining(&PostHead, DocId);
+		temp->Accessor.InsertAtBegining(&temp->PostHead, DocId);
 		return;
 	}
 	if (temp->item != "NULL" && temp->item == key)
 	{
 		temp->item = key;
-		Accessor.InsertAtBegining(&PostHead, DocId);
+		temp->Accessor.InsertAtBegining(&temp->PostHead, DocId);
 		return;
+	}
+	if (temp->item != "NULL")
+	{
+		while (temp->item != "NULL")
+		{
+			temp = temp->next;
+		}
+		temp->item = key;
+		temp->Accessor.InsertAtBegining(&temp->PostHead, DocId);
+		//Accessor.InsertAtBegining(&PostHead, DocId);
 	}
 }
 void Table::Search(string key,Table **head)
@@ -65,7 +76,37 @@ void Table::Search(string key,Table **head)
 	{
 		temp = temp->next;
 	}
-	cout << "The Word " << key << " is present in the documents  ";
-	Accessor.PrintPostings(PostHead);
+	int FoundFlag = 1;
+	if (temp->item != key)
+	{
+		while (temp->item != key)
+		{
+			if (pos >= TotWords)
+			{
+				FoundFlag = 0;
+				break;
+			}
+			temp = temp->next;
+			pos++;
+		}
+
+		if (FoundFlag == 0)
+		{
+			cout << "The Given word"<< key <<" doesnt occur in the documents" << endl;
+		}
+		else
+		{
+			cout << "The Word Present at index "<< pos <<" " << key << " is present in the documents  ";
+			//Accessor.PrintPostings(PostHead);
+			temp->Accessor.PrintPostings(temp->PostHead);
+			cout << endl;
+		}
+	}
+	else
+	{
+		cout << "The Word Present at index " << pos << " " << key << " is present in the documents  ";
+		temp->Accessor.PrintPostings(temp->PostHead);
+		cout << endl;
+	}
 
 }
