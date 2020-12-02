@@ -49,12 +49,20 @@ void Table::InsertWord(int DocId, string key, Table** head)
 	{
 		temp->item = key;
 		temp->Accessor.InsertAtBegining(&temp->PostHead, DocId);
+		temp->Accessor.IncrementFrequency(&temp->PostHead,DocId);
 		return;
 	}
-	if (temp->item != "NULL" && temp->item == key)
+	if (temp->item != "NULL" && temp->item == key && temp->PostHead->ReturnData() != DocId)
 	{
 		temp->item = key;
 		temp->Accessor.InsertAtBegining(&temp->PostHead, DocId);
+		temp->Accessor.IncrementFrequency(&temp->PostHead,DocId);
+		return;
+	}
+	if (temp->item != "NULL" && temp->item == key  && temp->PostHead->ReturnData()==DocId)
+	{
+		temp->item = key;
+		temp->Accessor.IncrementFrequency(&temp->PostHead,DocId);
 		return;
 	}
 	if (temp->item != "NULL")
