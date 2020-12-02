@@ -1,14 +1,41 @@
 #include "Postings.h"
+int Postings::ReturnData()
+{
+    return data;
+}
+
+void Postings::IncrementFrequency(Postings **head,int DocId)
+{
+    Postings* temp = *head;
+    if (temp->data != DocId)
+    {
+        while (temp->data != DocId)
+        {
+            if (temp == NULL)
+            {
+                break;
+            }
+            temp = temp->next;
+        }
+        if (temp != NULL)
+        {
+            temp->freq++;
+            return;
+        }
+    }
+    (*(head))->freq++;
+    return;
+    
+
+    
+}
 void Postings::InsertAtBegining(Postings** head, int data)
 {
-
-
     Postings* temp = new Postings;
     temp->data = data;
     temp->next = *head;
     *head = temp;
     return;
-
 }
 void Postings::InsertAtEnd(Postings** head, int data)
 {
@@ -56,7 +83,7 @@ void Postings::PrintPostings(Postings* head)
 {
     while (head != NULL)
     {
-        cout << " "<<head->data;
+        cout << " "<<head->data << " Frequency = "<<head->freq;
         head = head->next;
     }
     return;

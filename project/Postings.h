@@ -4,7 +4,7 @@ using namespace std;
 class Postings
 {
     int data;
-    int freq;
+    int freq=0;
     Postings* next;
 
 public:
@@ -13,5 +13,7 @@ public:
     void InsertAtPos(Postings** head, int data, int pos);
     void PrintPostings(Postings* head);
     void DeleteElement(Postings** head, int pos);
+    void IncrementFrequency(Postings **head,int DocId);
+    int ReturnData();
     
 };
