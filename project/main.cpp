@@ -7,13 +7,17 @@ int main()
 {
 	Table TableAccessor;
 	Table* TableHead = NULL;
-	TableAccessor.InitializeTotWords(40000);
+	TableAccessor.InitializeTotWords(4000);
 	TableAccessor.InsertAtBegining(&TableHead);
 	TableAccessor.InitializeTable(&TableHead);
-	TableAccessor.InsertWord(1, "Ist", &TableHead);
-	TableAccessor.InsertWord(1, "Ist", &TableHead);
-	TableAccessor.InsertWord(3, "Ist", &TableHead);
-	TableAccessor.Search("Ist", &TableHead);
+	TableAccessor.BuildTable(&TableHead, "doc1.txt");
+	Table* temp = TableHead;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+	}
+	TableAccessor.Search( "Thank", &TableHead );
+	TableAccessor.Search("istinja", &TableHead);
+	TableAccessor.Search("Pence", &TableHead);
 	//TableAccessor.Search("A", &TableHead);
-
 }

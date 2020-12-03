@@ -83,7 +83,7 @@ void Postings::PrintPostings(Postings* head)
 {
     while (head != NULL)
     {
-        cout << " "<<head->data << " Frequency = "<<head->freq;
+        cout << " Doc Id: " << head->data<<" Freq: "<<head->freq;
         head = head->next;
     }
     return;

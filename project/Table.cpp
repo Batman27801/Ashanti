@@ -1,6 +1,35 @@
 #include "Table.h"
+using namespace std;
 Table::Table()
 {
+	
+}
+string RemoveSpecialCharacter(string word)
+{
+	for (int i = 0; i < word.size(); i++) {
+
+		if (word[i] < 'A' || word[i] > 'Z' && word[i] < 'a' || word[i] > 'z')
+		{ 
+			word.erase(i, 1);
+			i--;
+		}
+	}
+	return word;
+}
+void Table::BuildTable(Table** head, string file)
+{
+	string temp;
+	fstream fobj;
+	fobj.open(file, ios::in);
+	while (!fobj.eof())
+	{
+		fobj >> temp;
+		temp = RemoveSpecialCharacter(temp);
+		if (StopWordCheck(temp, 0, 430) == 0)
+		{
+			InsertWord(1, temp, &(*head));
+		}
+	}
 }
 void Table::InsertAtBegining(Table **head)
 {
@@ -13,7 +42,7 @@ void Table::InsertAtBegining(Table **head)
 void Table::InitializeTable(Table **head)
 {
 	Table* temp = *head;
-	for (int i = 1; i < 40000; i++)
+	for (int i = 1; i < 4000; i++)
 	{
 		Table* NewNode = new Table;
 		NewNode->index = i;
@@ -21,6 +50,37 @@ void Table::InitializeTable(Table **head)
 		temp->next = NewNode;
 		temp = NewNode;
 	}
+	fstream file;
+	file.open("StopWords.txt",ios::in);
+	for (int i = 0; i < 430; i++)
+	{
+		string temp;
+		file >> temp;
+		StopWords[i] = temp;
+	}
+}
+bool Table::StopWordCheck(string word,int lower,int upper)
+{
+	static int FoundFlag = 0;
+	if (upper >= lower)
+	{
+		int mid = (lower + upper) / 2;
+		string temp = StopWords[mid];
+		if (word == StopWords[mid])
+		{
+			FoundFlag = 1;
+			return true;
+		}
+		else if ( StopWords[mid]>word)
+		{
+			StopWordCheck(word, lower, mid-1);
+		}
+		else 
+		{
+			StopWordCheck(word, mid+1, upper);
+		}
+	}
+	return false;
 }
 void Table::InitializeTotWords(int Words)
 {
@@ -31,16 +91,26 @@ int Table::hash(string key)
 	int var = 0;
 	for (int i = 0; i < key.length(); i++)
 	{
-		var += key[i];
-
+		int temp;
+		if (key[i] > 64 && key[i] < 90)
+		{
+			temp = key[i] - 65;
+		}
+		else {
+			temp = key[i] - 97;
+		}	
+		var += temp;
 	}
+	
 	int pos = var % TotWords;
 	return pos;
 }
+
 void Table::InsertWord(int DocId, string key, Table** head)
 {
 	int pos = hash(key);
 	Table* temp = *head;
+
 	for (int i = 0; i <= pos; i++)
 	{
 		temp = temp->next;
@@ -87,9 +157,11 @@ void Table::Search(string key,Table **head)
 	int FoundFlag = 1;
 	if (temp->item != key)
 	{
+		int place = pos;
 		while (temp->item != key)
 		{
-			if (pos >= TotWords)
+			
+			if (pos-50==place)
 			{
 				FoundFlag = 0;
 				break;
@@ -104,7 +176,7 @@ void Table::Search(string key,Table **head)
 		}
 		else
 		{
-			cout << "The Word Present at index "<< pos <<" " << key << " is present in the documents  ";
+			cout << pos <<" " << key << " ";
 			//Accessor.PrintPostings(PostHead);
 			temp->Accessor.PrintPostings(temp->PostHead);
 			cout << endl;
@@ -112,7 +184,7 @@ void Table::Search(string key,Table **head)
 	}
 	else
 	{
-		cout << "The Word Present at index " << pos << " " << key << " is present in the documents  ";
+		cout << pos << " " << key << " ";
 		temp->Accessor.PrintPostings(temp->PostHead);
 		cout << endl;
 	}
