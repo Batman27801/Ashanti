@@ -10,14 +10,15 @@ int main()
 	TableAccessor.InitializeTotWords(4000);
 	TableAccessor.InsertAtBegining(&TableHead);
 	TableAccessor.InitializeTable(&TableHead);
-	TableAccessor.BuildTable(&TableHead, "doc1.txt");
+	TableAccessor.BuildTable(&TableHead, "doc1.txt",1);
+	TableAccessor.BuildTable(&TableHead, "doc2.txt",2);
 	Table* temp = TableHead;
 	while (temp != NULL)
 	{
 		temp = temp->next;
 	}
 	TableAccessor.Search( "Thank", &TableHead );
-	TableAccessor.Search("istinja", &TableHead);
-	TableAccessor.Search("Pence", &TableHead);
+	TableAccessor.Search("Stay", &TableHead);
+	TableAccessor.Search("limestone", &TableHead);
 	//TableAccessor.Search("A", &TableHead);
 }

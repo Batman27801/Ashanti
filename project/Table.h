@@ -16,7 +16,7 @@ public:
 	string StopWords[430];
 public:
 	Table();
-	void BuildTable(Table** head,string doc);
+	void BuildTable(Table** head,string doc,int DocId);
 	bool StopWordCheck(string word,int lower,int upper);
 	void InsertAtBegining(Table** head);
 	void InitializeTable(Table **head);
