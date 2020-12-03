@@ -16,7 +16,7 @@ string RemoveSpecialCharacter(string word)
 	}
 	return word;
 }
-void Table::BuildTable(Table** head, string file)
+void Table::BuildTable(Table** head, string file,int docId)
 {
 	string temp;
 	fstream fobj;
@@ -27,7 +27,7 @@ void Table::BuildTable(Table** head, string file)
 		temp = RemoveSpecialCharacter(temp);
 		if (StopWordCheck(temp, 0, 430) == 0)
 		{
-			InsertWord(1, temp, &(*head));
+			InsertWord(docId, temp, &(*head));
 		}
 	}
 }
