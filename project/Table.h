@@ -2,6 +2,8 @@
 #include"List.h"
 #include<vector>
 #include<fstream>
+#include<string.h>
+#include<string>
 #pragma once
 using namespace std;
 class Table {

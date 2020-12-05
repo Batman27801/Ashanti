@@ -73,11 +73,11 @@ bool Table::StopWordCheck(string word,int lower,int upper)
 		}
 		else if ( StopWords[mid]>word)
 		{
-			StopWordCheck(word, lower, mid-1);
+			return StopWordCheck(word, lower, mid-1);
 		}
 		else 
 		{
-			StopWordCheck(word, mid+1, upper);
+			return StopWordCheck(word, mid+1, upper);
 		}
 	}
 	return false;
@@ -148,45 +148,102 @@ void Table::InsertWord(int DocId, string key, Table** head)
 }
 void Table::Search(string key,Table **head)
 {
-	int pos = hash(key);
-	Table* temp = *head;
-	for (int i = 0; i <= pos; i++)
+	
+	int TotWords = 0;
+	for (int i = 0; i < key.length(); i++)
 	{
-		temp = temp->next;
+		if (key[i] == ' ')
+		{
+			TotWords++;
+		}
 	}
-	int FoundFlag = 1;
-	if (temp->item != key)
+	TotWords++;
+	string* WordArr = new string[TotWords];
+	int j = 0;
+	WordArr[j] = key.substr(0, key.find(" "));
+	j++;
+	for (int i = 0; i < key.length(); i++)
 	{
-		int place = pos;
-		while (temp->item != key)
+		if (key[i] == ' ')
 		{
 			
-			if (pos-50==place)
+			i++;
+			int k = i;
+			while (key[k] != ' ')
 			{
-				FoundFlag = 0;
-				break;
+				k++;
+				if (k > key.length())
+				{
+					k = key.length();
+					break;
+				}
 			}
-			temp = temp->next;
-			pos++;
+			WordArr[j] = key.substr(i, k-i);
+			j++;
 		}
+	}
+	int FoundFlag;
+	int place;
+	int pos;
+	Table* temp;
 
-		if (FoundFlag == 0)
+	for (int i = 0; i < TotWords; i++)
+	{
+		if (StopWordCheck(WordArr[i], 0, 430) == 1)
 		{
-			cout << "The Given word"<< key <<" doesnt occur in the documents" << endl;
+			goto end;
+		}
+		 pos = hash(WordArr[i]);
+		 temp = *head;
+		for (int i = 0; i <= pos; i++)
+		{
+			temp = temp->next;
+		}
+		 FoundFlag = 1;
+		if (temp->item != WordArr[i])
+		{
+			 place = pos;
+			while (temp->item != WordArr[i])
+			{
+
+				if (pos - 25 == place) //checking 25 places is more than enough as more then 5 amalgams are rare of a word 
+				{
+					FoundFlag = 0;
+					break;
+				}
+				temp = temp->next;
+				pos++;
+			}
+
+			if (FoundFlag == 0)
+			{
+				if (TotWords > 1)
+				{
+					cout << "The given string " << key << " doesnot occur in the doocuments" << endl;
+					return;
+				}
+				else
+				{
+					cout << "The Given word " << WordArr[i] << " doesnot occur in the documents" << endl;
+					return;
+				}
+			}
+			else
+			{
+				cout << pos << " " << WordArr[i] << " ";
+				temp->Accessor.PrintPostings(temp->PostHead);
+				cout << endl;
+			}
 		}
 		else
 		{
-			cout << pos <<" " << key << " ";
-			//Accessor.PrintPostings(PostHead);
+			cout << pos << " " << WordArr[i] << " ";
 			temp->Accessor.PrintPostings(temp->PostHead);
 			cout << endl;
 		}
+	end:;
 	}
-	else
-	{
-		cout << pos << " " << key << " ";
-		temp->Accessor.PrintPostings(temp->PostHead);
-		cout << endl;
-	}
+	
+	
 
 }
