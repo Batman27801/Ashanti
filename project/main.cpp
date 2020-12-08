@@ -9,7 +9,6 @@ int main()
 	Table TableAccessor;
 	Table* TableHead = NULL;
 	TableAccessor.InitializeTotWords(4000);
-	TableAccessor.InsertAtBegining(&TableHead);
 	TableAccessor.InitializeTable(&TableHead);
 	TableAccessor.BuildTable(&TableHead, "doc1.txt",1);
 	TableAccessor.BuildTable(&TableHead, "doc2.txt",2);
