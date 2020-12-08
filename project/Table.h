@@ -8,13 +8,12 @@
 using namespace std;
 class Table {
 public:
-	string item = "NULL";
-	int index;
+	string item ;
+	//int index;
 	Postings* PostHead ;
 	Postings Accessor;
-	
 	int TotWords;
-	Table* next;
+	//Table* next;
 	string StopWords[430];
 public:
 	Table();
