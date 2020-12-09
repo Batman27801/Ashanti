@@ -81,11 +81,44 @@ void Postings:: InsertAtPos(Postings** head, int data, int pos)
 }
 void Postings::PrintPostings(Postings* head)
 {
+    char ch = 219;
+    int count = 0, * Doc_IDs, * frequencies, max_freq;
+    Postings* temp1 = head;
     while (head != NULL)
     {
-        cout << " Doc Id: " << head->data<<" Freq: "<<head->freq;
+        cout << " Doc Id: " << head->data << " Freq: " << head->freq;
         head = head->next;
+        count++;
     }
+    Doc_IDs = new int[count];
+    frequencies = new int[count];
+    for (int i = 0; i < count; i++, temp1 = temp1->next)
+    {
+        Doc_IDs[i] = temp1->data;
+        frequencies[i] = temp1->freq;
+    }
+    max_freq = frequencies[0];
+    for (int i = 0; i < count; i++)
+    {
+        if (frequencies[i] > max_freq) max_freq = frequencies[i];
+    }
+    cout << endl << "Frequency Graph: " << endl << endl << endl;
+    for (int i = max_freq; i >= 1; i--)
+    {
+        cout << "\t      ";
+        for (int j = 0; j < count; j++)
+        {
+            if (frequencies[j] >= i) cout << ch << ' ';
+            else cout << "  ";
+        }
+        cout << i << endl;
+    }
+    cout << "\tDoc   ";
+    for (int i = 0; i < count; i++)
+    {
+        cout << Doc_IDs[i] << ' ';
+    }
+    cout << endl;
     return;
 }
 void Postings::DeleteElement(Postings** head, int pos)
