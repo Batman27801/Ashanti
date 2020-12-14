@@ -14,9 +14,9 @@ public:
 	Postings Accessor;
 	int TotWords;
 	//Table* next;
-	string StopWords[430];
 public:
 	Table();
+	Table(const Table& obj);
 	void BuildTable(Table** head,string doc,int DocId);
 	bool StopWordCheck(string word,int lower,int upper);
 	void InsertAtBegining(Table** head);

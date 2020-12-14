@@ -1,9 +1,17 @@
 #include "Table.h"
 using namespace std;
+string StopWords[430];
 Table::Table()
 {
 	this->item = "NULL";
 	this->PostHead = NULL;
+}
+Table::Table(const Table& obj)
+{
+	this->Accessor = obj.Accessor;
+	this->item = obj.item;
+	this->PostHead = obj.PostHead;
+	this->TotWords = obj.TotWords;
 }
 string RemoveSpecialCharacter(string word)
 {
@@ -40,7 +48,7 @@ void Table::InsertAtBegining(Table **head)
 }
 void Table::InitializeTable(Table **head)
 {
-	*head = new Table[4000];
+	*head = new Table[60000];
 	Table* temp = *head;
 	/*for (int i = 0; i < 4000; i++)
 	{
@@ -104,38 +112,70 @@ int Table::hash(string key)
 
 void Table::InsertWord(int DocId, string key, Table** head)
 {
+	
+	static int bitch = 0;
 	int pos = hash(key);
 	Table* temp = *head;
-	if ((temp+pos)->item == "NULL" && (temp+pos)->item != key)
+	if ((temp + pos)->item != "NULL")
+	{
+		while ((temp + pos)->item != "NULL" )
+		{
+			if ((temp + pos)->item == key)
+			{
+				break;
+			}
+			pos++;
+		}
+	}
+	if ((temp + pos)->item == "NULL" && (temp + pos)->item != key)
 	{
 		(temp + pos)->item = key;
 		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
-		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead,DocId);
+		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
 		return;
 	}
 	if ((temp + pos)->item != "NULL" && (temp + pos)->item == key && (temp + pos)->PostHead->ReturnData() != DocId)
 	{
 		(temp + pos)->item = key;
 		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
-		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead,DocId);
+		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
 		return;
 	}
-	if ((temp + pos)->item != "NULL" && (temp + pos)->item == key  && (temp + pos)->PostHead->ReturnData()==DocId)
+	if ((temp + pos)->item != "NULL" && (temp + pos)->item == key && (temp + pos)->PostHead->ReturnData() == DocId)
 	{
 		(temp + pos)->item = key;
-		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead,DocId);
+		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
 		return;
 	}
-	if ((temp + pos)->item != "NULL")
-	{
-		while ((temp + pos)->item != "NULL")
-		{
-			pos++;
-		}
-		(temp + pos)->item = key;
-		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
-		//Accessor.InsertAtBegining(&PostHead, DocId);
-	}
+	//if ((temp + pos)->item != "NULL")
+	//{
+	//	while ((temp + pos)->item != "NULL" || (temp + pos)->item==key)
+	//	{
+	//		pos++;
+	//	}
+	//	if (pos == 2147 && bitch==0)
+	//	{
+	//		bitch++;
+	//		(temp + pos)->item = key;
+	//		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
+	//		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
+
+	//	}
+	//	else if (pos == 2147 && bitch != 0)
+	//	{
+	//		(temp + pos)->item = key;
+	//		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
+	//		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
+	//	}
+	//	else
+	//	{
+	//		(temp + pos)->item = key;
+	//		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
+	//		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
+	//	}
+	//	//Accessor.InsertAtBegining(&PostHead, DocId);
+	//}
+	
 }
 void Table::Search(string key,Table **head)
 {
@@ -193,7 +233,7 @@ void Table::Search(string key,Table **head)
 			while ((temp + pos)->item != WordArr[i])
 			{
 
-				if (pos - 25 == place) //checking 25 places is more than enough as more then 5 amalgams are rare of a word 
+				if (pos==6000)//checking 25 places is more than enough as more then 5 amalgams are rare of a word 
 				{
 					FoundFlag = 0;
 					break;
