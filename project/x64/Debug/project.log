@@ -1,7 +1,5 @@
-﻿  Postings.cpp
-C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\Postings.cpp(84,15): warning C4309: 'initializing': truncation of constant value
+﻿  Table.cpp
+C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\Table.cpp(208,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   main.cpp
-  Table.cpp
-C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\Table.cpp(168,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Generating Code...
   project.vcxproj -> C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\x64\Debug\project.exe
