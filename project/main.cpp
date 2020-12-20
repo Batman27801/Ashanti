@@ -16,7 +16,7 @@ int main()
 	TableAccessor.BuildTable(&TableHead, "Doc4.txt",4);
 	TableAccessor.BuildTable(&TableHead, "Doc5.txt",5);
 	Table* temp = TableHead;
-	TableAccessor.Search( "it sat as a dog", &TableHead);
+	TableAccessor.Search( "into mere illusion his craving for supreme", &TableHead);
 	TableAccessor.Search("Fast really sucks ass ", &TableHead);
 	TableAccessor.Search("limestone", &TableHead);
 	TableAccessor.Search("thy", &TableHead);
