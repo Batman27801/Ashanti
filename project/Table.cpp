@@ -1,6 +1,8 @@
 #include "Table.h"
+#include"Trie.h"
 using namespace std;
 string StopWords[430];
+Trie* root;
 Table::Table()
 {
 	this->item = "NULL";
@@ -27,6 +29,13 @@ string RemoveSpecialCharacter(string word)
 }
 void Table::BuildTable(Table** head, string file,int docId)
 {
+	static int i = 0;
+	if (i == 0)
+	{
+		Trie Accessor;
+		root=Accessor.BuildTrie(root);
+		i++;
+	}
 	string temp;
 	fstream fobj;
 	fobj.open(file, ios::in);
@@ -179,6 +188,7 @@ void Table::InsertWord(int DocId, string key, Table** head)
 }
 void Table::Search(string key,Table **head)
 {
+	Trie Accessor;
 	
 	int TotWords = 0;
 	for (int i = 0; i < key.length(); i++)
@@ -257,6 +267,7 @@ void Table::Search(string key,Table **head)
 			else
 			{
 				cout << pos << " " << WordArr[i] << " ";
+				Accessor.Search(root, WordArr[i]);
 				(temp + pos)->Accessor.PrintPostings((temp + pos)->PostHead);
 				cout << endl;
 			}
@@ -264,6 +275,7 @@ void Table::Search(string key,Table **head)
 		else
 		{
 			cout << pos << " " << WordArr[i] << " ";
+			Accessor.Search(root, WordArr[i]);
 			(temp + pos)->Accessor.PrintPostings((temp + pos)->PostHead);
 			cout << endl;
 		}
