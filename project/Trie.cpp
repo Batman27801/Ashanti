@@ -1,23 +1,23 @@
 #include "Trie.h"
 Trie*Trie:: BuildTrie(Trie* root)
 {
-	root = GetNode();
 	fstream obj;
 	obj.open("EngDic.txt", ios::in);
 	string word;
 	string meaning;
-	for (int i = 0; i < 9467; i++)
+	for (int i = 0; i < 107745; i++)
 	{
 		getline(obj, word);
-		if (word == "guess")
+		if (word == "")
 		{
-			int y = 0;
+			goto pk;
 		}
 		getline(obj, meaning);
 		Insert(root, word, meaning);
-	pk:
-		int y = 0;
+	pk:;
+		
 	}
+	
 	return root;
 }
 Trie* Trie::GetNode()
@@ -27,8 +27,12 @@ Trie* Trie::GetNode()
 	{
 		obj->Alphabets[i] = NULL;
 	}
-	obj->Meaning = "NULL";
+	for (int i = 0; i < 100; i++)
+	{
+		obj->Meaning[i] = "NULL";
+	}
 	obj->WordEnd = false;
+	obj->MeaningIndex = 0;
 	return obj;
 }
 void Trie::Insert(Trie* root, string key, string meaning)
@@ -37,7 +41,16 @@ void Trie::Insert(Trie* root, string key, string meaning)
 	Trie* temp = root;
 	for (int i = 0; i < key.length(); i++)
 	{
-		int index = key[i] - 97;
+		int index;
+		if (i == 0)
+		{
+			index = key[i] - 65;
+		}
+		else
+		{
+			index = key[i] - 97;
+		}
+
 		if (index < 0 || index >26)
 		{
 			goto en;
@@ -50,16 +63,32 @@ void Trie::Insert(Trie* root, string key, string meaning)
 	en:
 		index = 0;
 	}
-	//temp = GetNode();
+
+
 	temp->WordEnd = true;
-	temp->Meaning = meaning;
+	if (temp->MeaningIndex < 100)
+	{
+		temp->Meaning[temp->MeaningIndex] = meaning;
+	}
+	if (temp->MeaningIndex != 100)
+	{
+		temp->MeaningIndex++;
+	}
 }
 bool Trie::Search(Trie* root, string word)
 {
 	Trie* temp = root;
 	for (int i = 0; i < word.length(); i++)
 	{
-		int index = word[i] - 97;
+		int index;
+		if (word[i] >= 65 && word[i] <= 90)
+		{
+			index = word[i] - 65;
+		}
+		else
+		{
+			index = word[i] - 97;
+		}
 		if (!temp->Alphabets[index])
 		{
 			return false;
@@ -68,11 +97,19 @@ bool Trie::Search(Trie* root, string word)
 	}
 	if (temp != NULL && temp->WordEnd == true)
 	{
-		cout << temp->Meaning << endl;
+		for (int i = 0; i < 40; i++)
+		{
+			if (temp->Meaning[i] != "NULL")
+			{
+				cout << temp->Meaning[i] << endl;
+			}
+		}
+
 		return true;
 	}
 	else
 	{
 		return false;
 	}
+
 }

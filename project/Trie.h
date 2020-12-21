@@ -6,7 +6,8 @@ using namespace std;
 class Trie {
 	Trie* Alphabets[26];
 	bool WordEnd;
-	string Meaning;
+	string Meaning[100];
+	int MeaningIndex = 0;
 public:
 	Trie* BuildTrie(Trie* root);
 	Trie* GetNode();
