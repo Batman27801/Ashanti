@@ -33,6 +33,7 @@ void Table::BuildTable(Table** head, string file,int docId)
 	if (i == 0)
 	{
 		Trie Accessor;
+		root = Accessor.GetNode();
 		root=Accessor.BuildTrie(root);
 		i++;
 	}
@@ -156,34 +157,7 @@ void Table::InsertWord(int DocId, string key, Table** head)
 		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
 		return;
 	}
-	//if ((temp + pos)->item != "NULL")
-	//{
-	//	while ((temp + pos)->item != "NULL" || (temp + pos)->item==key)
-	//	{
-	//		pos++;
-	//	}
-	//	if (pos == 2147 && bitch==0)
-	//	{
-	//		bitch++;
-	//		(temp + pos)->item = key;
-	//		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
-	//		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
 
-	//	}
-	//	else if (pos == 2147 && bitch != 0)
-	//	{
-	//		(temp + pos)->item = key;
-	//		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
-	//		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
-	//	}
-	//	else
-	//	{
-	//		(temp + pos)->item = key;
-	//		(temp + pos)->Accessor.InsertAtBegining(&(temp + pos)->PostHead, DocId);
-	//		(temp + pos)->Accessor.IncrementFrequency(&(temp + pos)->PostHead, DocId);
-	//	}
-	//	//Accessor.InsertAtBegining(&PostHead, DocId);
-	//}
 	
 }
 void Table::Search(string key,Table **head)
