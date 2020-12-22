@@ -4,4 +4,3 @@
 #include<vector>
 #include"Table.h"
 #include"Postings.h"
-

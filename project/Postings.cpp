@@ -1,4 +1,6 @@
 #include "Postings.h"
+#include <string>
+#include <string.h>
 int Postings::ReturnData()
 {
     return data;
@@ -102,7 +104,12 @@ void Postings::PrintPostings(Postings* head)
     {
         if (frequencies[i] > max_freq) max_freq = frequencies[i];
     }
-    cout << endl << "Frequency Graph: " << endl << endl << endl;
+    cout << "\n\n\n\n\t\t\t\t\t\t";
+    cout << "Frequency Graph: ";
+    cout << "\n\t\t\t\t\t\t";
+    cout << "\n\t\t\t\t\t\t";
+    cout << "\n\t\t\t\t\t\t";
+
     for (int i = max_freq; i >= 1; i--)
     {
         cout << "\t      ";
@@ -111,14 +118,16 @@ void Postings::PrintPostings(Postings* head)
             if (frequencies[j] >= i) cout << ch << ' ';
             else cout << "  ";
         }
-        cout << i << endl;
+        cout << "\n\t\t\t\t\t\t";
+
     }
     cout << "\tDoc   ";
     for (int i = 0; i < count; i++)
     {
         cout << Doc_IDs[i] << ' ';
     }
-    cout << endl;
+    cout << "\n\t\t\t\t\t\t";
+
     return;
 }
 void Postings::DeleteElement(Postings** head, int pos)

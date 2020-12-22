@@ -1,5 +1,7 @@
 #include "Table.h"
 #include"Trie.h"
+#include <string>
+#include <string.h>
 using namespace std;
 string StopWords[430];
 Trie* root;
