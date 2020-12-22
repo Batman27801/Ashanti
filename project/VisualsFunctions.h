@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include"List.h"
 #include<vector>
+#include <fstream>
 using namespace std;
 void center_newline()
 {
@@ -19,9 +20,7 @@ void clear_screen()
 {
 	system("CLS");
 	cout << "\n\n\n\n\n\n\t\t\t\t\t\t\t\t";
-	cout << "ASHANTI PROJECT";
-	cout << "\t\t\t\t\t";
-	cout << "BY: (FAWAD JAVED) (ZAID SHAHAB) (ARUN JAI)";
+	cout << "ASHANTI";
 }
 void normal_spacing()
 {
@@ -33,33 +32,26 @@ void normally_continue()
 }
 void home_page()
 {
-	//clear_screen();
-	center_newline();
-	center_continue();
-	cout << "\tWELCOME TO ASHANTI PROJECT";
-	center_continue();
-	center_continue();
-	center_continue();
-	cout << "\tDEVELOPERS: ";
-	center_continue();
-	cout << "\t\t  FAWAD JAVED FATEH";
-	center_continue();
-	cout << "\t\t  ZAID BIN SHAHAB";
-	center_continue();
-	cout << "\t\t  ARUN JAI";
-	center_continue();
-	center_continue();
+	char ch;
+	ifstream is;
+	is.open("AshantiHome.txt");
+	while (is.get(ch))
+	{
+		cout << ch;
+	}
+	cout << endl;
 	system("pause");
 }
 void end_page()
 {
+	char ch;
 	system("CLS");
-	center_newline();
-	center_continue();
-	center_continue();
-	center_continue();
-	cout << "THANK YOU SO MUCH FOR VISITING";
-	center_continue();
+	ifstream is("ProjectEnd.txt");
+	while (is.get(ch))
+	{
+		cout << ch;
+	}
+	cout << endl;
 	system("pause");
 }
 void project_Runner()
@@ -90,16 +82,18 @@ void project_Runner()
 		center_continue();
 		cout << "Your Choice: ";
 		cin >> choice;
+		cin.ignore();
 		if (choice == 1)
 		{
 			clear_screen();
 			center_newline();
-			cout << "ENTER THE STRING YOU WANT TO SEARCH: ";
+			cout << "ENTER THE TERM YOU WANT TO SEARCH: ";
 			fflush(stdin);
-			cin >> Sentence;
+			getline(cin,Sentence);
 			TableAccessor.Search(Sentence, &TableHead);
 			center_continue();
 			system("pause");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 		}
 		else if (choice == 2)
 		{

@@ -1,6 +1,7 @@
 #include "Postings.h"
 #include <string>
 #include <string.h>
+#include <Windows.h>
 int Postings::ReturnData()
 {
     return data;
@@ -104,6 +105,7 @@ void Postings::PrintPostings(Postings* head)
     {
         if (frequencies[i] > max_freq) max_freq = frequencies[i];
     }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
     cout << "\n\n\n\n\t\t\t\t\t\t";
     cout << "Frequency Graph: ";
     cout << "\n\t\t\t\t\t\t";

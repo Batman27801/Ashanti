@@ -1,4 +1,5 @@
 #include "Trie.h"
+#include <Windows.h>
 #include <string>
 #include <string.h>
 Trie*Trie:: BuildTrie(Trie* root)
@@ -103,6 +104,7 @@ bool Trie::Search(Trie* root, string word)
 		{
 			if (temp->Meaning[i] != "NULL")
 			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 				cout << temp->Meaning[i] << endl;
 			}
 		}
