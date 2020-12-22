@@ -2,6 +2,7 @@
 #include"Trie.h"
 #include <string>
 #include <string.h>
+#include <Windows.h>
 using namespace std;
 string StopWords[430];
 Trie* root;
@@ -164,6 +165,7 @@ void Table::InsertWord(int DocId, string key, Table** head)
 }
 void Table::Search(string key,Table **head)
 {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	Trie Accessor;
 	
 	int TotWords = 0;
@@ -231,29 +233,48 @@ void Table::Search(string key,Table **head)
 			{
 				if (TotWords > 1)
 				{
+					SetConsoleTextAttribute(h, 12);
 					cout << "The given string " << key << " doesnot occur in the doocuments" << endl;
+					SetConsoleTextAttribute(h, 15);
 					return;
 				}
 				else
 				{
+					SetConsoleTextAttribute(h, 12);
 					cout << "The Given word " << WordArr[i] << " doesnot occur in the documents" << endl;
+					SetConsoleTextAttribute(h, 15);
 					return;
 				}
 			}
 			else
 			{
-				cout << pos << " " << WordArr[i] << " ";
+				SetConsoleTextAttribute(h, 8);
+				cout << pos << " ";
+				SetConsoleTextAttribute(h, 5);
+				cout << WordArr[i] << " ";
+				cout << endl;
+				SetConsoleTextAttribute(h, 15);
 				Accessor.Search(root, WordArr[i]);
+				SetConsoleTextAttribute(h, 13);
 				(temp + pos)->Accessor.PrintPostings((temp + pos)->PostHead);
 				cout << endl;
+				SetConsoleTextAttribute(h, 15);
 			}
 		}
 		else
 		{
-			cout << pos << " " << WordArr[i] << " ";
+			SetConsoleTextAttribute(h, 8);
+			cout << pos << " ";
+			SetConsoleTextAttribute(h, 5);
+			cout << WordArr[i] << " ";
+			cout << endl;
+			SetConsoleTextAttribute(h, 13);
 			Accessor.Search(root, WordArr[i]);
+			SetConsoleTextAttribute(h, 13);
 			(temp + pos)->Accessor.PrintPostings((temp + pos)->PostHead);
 			cout << endl;
+			SetConsoleTextAttribute(h, 15);
+
 		}
 	end:;
 	}
