@@ -10,7 +10,7 @@
 using namespace std;
 void center_newline()
 {
-	cout << "\n\n\n\n\t\t\t\t\t\t";
+	cout << "\n\n\n\t\t\t\t\t\t";
 }
 void center_continue()
 {
@@ -18,9 +18,14 @@ void center_continue()
 }
 void clear_screen()
 {
+	char ch;
 	system("CLS");
-	cout << "\n\n\n\n\n\n\t\t\t\t\t\t\t\t";
-	cout << "ASHANTI";
+	ifstream is;
+	is.open("AshantiHeader.txt");
+	while (is.get(ch))
+	{
+		cout << ch;
+	}
 }
 void normal_spacing()
 {
@@ -76,7 +81,7 @@ void project_Runner()
 		clear_screen();
 		center_newline();
 		center_continue();
-		cout << "1. Go To String Search";
+		cout << "1. Go To Term Search";
 		center_continue();
 		cout << "2. Exit Project";
 		center_continue();
