@@ -7,6 +7,7 @@
 #include"List.h"
 #include<vector>
 #include <fstream>
+#include"Headers.h"
 using namespace std;
 void center_newline()
 {
@@ -63,13 +64,14 @@ void project_Runner()
 {
 	Table TableAccessor;
 	Table* TableHead = NULL;
-	TableAccessor.InitializeTotWords(6000);
+	TableAccessor.InitializeTotWords(15000);
 	TableAccessor.InitializeTable(&TableHead);
 	TableAccessor.BuildTable(&TableHead, "Doc1.txt", 1);
 	TableAccessor.BuildTable(&TableHead, "Doc2.txt", 2);
 	TableAccessor.BuildTable(&TableHead, "Doc3.txt", 3);
 	TableAccessor.BuildTable(&TableHead, "Doc4.txt", 4);
 	TableAccessor.BuildTable(&TableHead, "Doc5.txt", 5);
+	TableAccessor.BuildTable(&TableHead, "Doc6.txt", 6);
 	Table* temp = TableHead;
 
 	int choice;
@@ -83,7 +85,9 @@ void project_Runner()
 		center_continue();
 		cout << "1. Go To Term Search";
 		center_continue();
-		cout << "2. Exit Project";
+		cout << "2. Go To File Cleaner";
+		center_continue();
+		cout << "3. Exit Project";
 		center_continue();
 		cout << "Your Choice: ";
 		cin >> choice;
@@ -100,10 +104,23 @@ void project_Runner()
 			system("pause");
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 		}
-		else if (choice == 2)
+		else if (choice == 3)
 		{
 			end_page();
 			break;
+		}
+		else if (choice == 2)
+		{
+			string filename;
+			clear_screen();
+			center_newline();
+			cout << "Enter name of the file with its extension(only .txt suported)";
+			getline(cin, filename);
+			CleanQ obj;
+			obj.filecleaner(filename);
+			center_continue();
+			system("pause");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 		}
 		else
 		{

@@ -25,5 +25,6 @@ public:
 	int hash(string key);
 	void InsertWord(int DocID,string key,Table **head);
 	void Search(string key,Table **Head);
+	~Table();
 
 };

@@ -6,6 +6,10 @@ int Postings::ReturnData()
 {
     return data;
 }
+Postings::~Postings()
+{
+    this->next = NULL;
+}
 
 void Postings::IncrementFrequency(Postings **head,int DocId)
 {

@@ -15,5 +15,6 @@ public:
     void DeleteElement(Postings** head, int pos);
     void IncrementFrequency(Postings **head,int DocId);
     int ReturnData();
+    ~Postings();
     
 };
