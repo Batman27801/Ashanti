@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <string.h>
+#include <Windows.h>
 #pragma once
 using namespace std;
 class Postings

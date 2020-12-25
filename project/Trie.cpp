@@ -1,7 +1,5 @@
 #include "Trie.h"
-#include <Windows.h>
-#include <string>
-#include <string.h>
+
 Trie*Trie:: BuildTrie(Trie* root)
 {
 	fstream obj;

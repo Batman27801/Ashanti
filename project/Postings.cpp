@@ -1,7 +1,5 @@
 #include "Postings.h"
-#include <string>
-#include <string.h>
-#include <Windows.h>
+
 int Postings::ReturnData()
 {
     return data;
@@ -97,6 +95,7 @@ void Postings::PrintPostings(Postings* head)
         head = head->next;
         count++;
     }
+    if (count == 0) return;
     Doc_IDs = new int[count];
     frequencies = new int[count];
     for (int i = 0; i < count; i++, temp1 = temp1->next)
