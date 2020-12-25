@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileCleaner.cpp" />
     <ClCompile Include="Postings.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="Trie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileCleaner.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="Postings.h" />
     <ClInclude Include="Table.h" />

@@ -18,6 +18,10 @@ Table::Table(const Table& obj)
 	this->PostHead = obj.PostHead;
 	this->TotWords = obj.TotWords;
 }
+Table::~Table()
+{
+	delete[] this->PostHead;
+}
 string RemoveSpecialCharacter(string word)
 {
 	for (int i = 0; i < word.size(); i++) {
@@ -63,10 +67,6 @@ void Table::InitializeTable(Table **head)
 {
 	*head = new Table[60000];
 	Table* temp = *head;
-	/*for (int i = 0; i < 4000; i++)
-	{
-		(temp + i)->item = "NULL";
-	}*/
 	fstream file;
 	file.open("StopWords.txt",ios::in);
 	for (int i = 0; i < 430; i++)
@@ -126,7 +126,6 @@ int Table::hash(string key)
 void Table::InsertWord(int DocId, string key, Table** head)
 {
 	
-	static int bitch = 0;
 	int pos = hash(key);
 	Table* temp = *head;
 	if ((temp + pos)->item != "NULL")
@@ -163,11 +162,22 @@ void Table::InsertWord(int DocId, string key, Table** head)
 
 	
 }
+string ConvLow(string arg)
+{
+	for (int i = 0; i < arg.length(); i++)
+	{
+		if (arg[i] >= 65 && arg[i] <= 92)
+		{
+			arg[i] = arg[i] + 32;
+		}
+	}
+	return arg;
+}
 void Table::Search(string key,Table **head)
 {
+	key = ConvLow(key);
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	Trie Accessor;
-	
 	int TotWords = 0;
 	for (int i = 0; i < key.length(); i++)
 	{
@@ -205,11 +215,15 @@ void Table::Search(string key,Table **head)
 	int place;
 	int pos;
 	Table* temp;
+	
 
 	for (int i = 0; i < TotWords; i++)
 	{
 		if (StopWordCheck(WordArr[i], 0, 430) == 1)
 		{
+			/*SetConsoleTextAttribute(h, 3);
+			cout << "The given word " << WordArr[i] << " is a stopword" << endl;*/
+
 			goto end;
 		}
 		 pos = hash(WordArr[i]);
@@ -221,7 +235,7 @@ void Table::Search(string key,Table **head)
 			while ((temp + pos)->item != WordArr[i])
 			{
 
-				if (pos==6000)//checking 25 places is more than enough as more then 5 amalgams are rare of a word 
+				if (pos==6000)
 				{
 					FoundFlag = 0;
 					break;
@@ -234,7 +248,7 @@ void Table::Search(string key,Table **head)
 				if (TotWords > 1)
 				{
 					SetConsoleTextAttribute(h, 12);
-					cout << "The given string " << key << " doesnot occur in the doocuments" << endl;
+					cout << "The given terms " << key << " doesnot occur simultaneously in the documents" << endl;
 					SetConsoleTextAttribute(h, 15);
 					return;
 				}
@@ -248,6 +262,7 @@ void Table::Search(string key,Table **head)
 			}
 			else
 			{
+				
 				SetConsoleTextAttribute(h, 8);
 				cout << pos << " ";
 				SetConsoleTextAttribute(h, 5);
@@ -263,6 +278,7 @@ void Table::Search(string key,Table **head)
 		}
 		else
 		{
+			(temp + 6000)->Accessor.PrintPostings((temp + 6000)->PostHead);
 			SetConsoleTextAttribute(h, 8);
 			cout << pos << " ";
 			SetConsoleTextAttribute(h, 5);

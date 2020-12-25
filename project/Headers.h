@@ -4,3 +4,4 @@
 #include<vector>
 #include"Table.h"
 #include"Postings.h"
+#include"FileCleaner.h"
