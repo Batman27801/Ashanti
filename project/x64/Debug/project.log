@@ -1,3 +1,10 @@
-﻿  Table.cpp
-C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\Table.cpp(206,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  project.vcxproj -> C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\x64\Debug\project.exe
+﻿  Postings.cpp
+E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\Postings.cpp(89,15): warning C4309: 'initializing': truncation of constant value
+  main.cpp
+  Table.cpp
+E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\Table.cpp(203,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Trie.cpp
+  VisualsFunctions.cpp
+E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\VisualsFunctions.cpp(68,7): warning C4101: 'sent': unreferenced local variable
+  Generating Code...
+  project.vcxproj -> E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\x64\Debug\project.exe

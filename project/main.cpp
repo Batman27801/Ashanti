@@ -10,6 +10,7 @@
 
 int main()
 {
+	VisualsFunctions Visuals;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-	project_Runner();
+	Visuals.project_Runner();
 }

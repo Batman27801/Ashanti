@@ -1,8 +1,5 @@
 #include "Table.h"
 #include"Trie.h"
-#include <string>
-#include <string.h>
-#include <Windows.h>
 using namespace std;
 string StopWords[430];
 Trie* root;
@@ -221,8 +218,8 @@ void Table::Search(string key,Table **head)
 	{
 		if (StopWordCheck(WordArr[i], 0, 430) == 1)
 		{
-			/*SetConsoleTextAttribute(h, 3);
-			cout << "The given word " << WordArr[i] << " is a stopword" << endl;*/
+			SetConsoleTextAttribute(h, 12);
+			cout << "The given word " << WordArr[i] << " is a stopword" << endl;
 
 			goto end;
 		}

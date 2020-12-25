@@ -2,6 +2,8 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include <Windows.h>
+#include <string.h>
 using namespace std;
 class Trie {
 	Trie* Alphabets[26];

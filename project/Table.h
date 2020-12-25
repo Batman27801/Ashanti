@@ -4,6 +4,7 @@
 #include<fstream>
 #include<string.h>
 #include<string>
+#include <Windows.h>
 #pragma once
 using namespace std;
 class Table {
