@@ -1,10 +1,6 @@
-﻿  Postings.cpp
-E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\Postings.cpp(89,15): warning C4309: 'initializing': truncation of constant value
+﻿  FileCleaner.cpp
   main.cpp
-  Table.cpp
-E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\Table.cpp(203,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Trie.cpp
-  VisualsFunctions.cpp
-E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\VisualsFunctions.cpp(68,7): warning C4101: 'sent': unreferenced local variable
   Generating Code...
+E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\FileCleaner.cpp(42): warning C4715: 'CleanQ::enqueue': not all control paths return a value
+E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\project\FileCleaner.cpp(30): warning C4715: 'CleanQ::dequeue': not all control paths return a value
   project.vcxproj -> E:\Arun Jai\Arun Jai Study Material\Data Structure\Data Structure Project\Ashanti\x64\Debug\project.exe

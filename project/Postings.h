@@ -11,6 +11,7 @@ class Postings
     Postings* next;
 
 public:
+    Postings();
     void InsertAtBegining(Postings** head, int data);
     void InsertAtEnd(Postings** head, int data);
     void InsertAtPos(Postings** head, int data, int pos);

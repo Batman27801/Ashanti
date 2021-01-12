@@ -1,5 +1,18 @@
 #include "Trie.h"
-
+Trie::Trie()
+{
+	for (int i = 0; i < 26; i++)
+	{
+		Alphabets[i] = NULL;
+	}
+}
+Trie::~Trie()
+{
+	for (int i = 25; i >= 0; i--)
+	{
+		delete (Alphabets[i]);
+	}
+}
 Trie*Trie:: BuildTrie(Trie* root)
 {
 	fstream obj;
