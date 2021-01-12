@@ -9,6 +9,10 @@ CleanQ::CleanQ()
 	capacity = 50;
 	queue = new char[capacity];
 }
+CleanQ::~CleanQ()
+{
+	delete this->queue;
+}
 char CleanQ::dequeue()
 {
 	if (rear == -1)

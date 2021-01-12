@@ -1,5 +1,8 @@
 #include "Postings.h"
-
+Postings::Postings()
+{
+    this->next = NULL;
+}
 int Postings::ReturnData()
 {
     return data;

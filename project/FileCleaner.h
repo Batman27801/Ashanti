@@ -18,5 +18,6 @@ public:
 	char Qfront();
 	void replacedash();
 	void filecleaner(string filename);
+	~CleanQ();
 };
 
