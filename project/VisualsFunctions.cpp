@@ -54,7 +54,7 @@ void VisualsFunctions::project_Runner()
 {
 	Table TableAccessor;
 	Table* TableHead = NULL;
-	TableAccessor.InitializeTotWords(15000);
+	TableAccessor.InitializeTotWords(25000);
 	TableAccessor.InitializeTable(&TableHead);
 	TableAccessor.BuildTable(&TableHead, "Doc1.txt", 1);
 	TableAccessor.BuildTable(&TableHead, "Doc2.txt", 2);
