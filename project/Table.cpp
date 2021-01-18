@@ -170,8 +170,26 @@ string ConvLow(string arg)
 	}
 	return arg;
 }
+string RemoveSpecialCharacterWithoutSpace(string word)
+{
+	for (int i = 0; i < word.size(); i++) {
+
+		if (word[i] == ' ')
+		{
+			goto en;
+		}
+		if (word[i] < 'A' || word[i] > 'Z' && word[i] < 'a' || word[i] > 'z')
+		{
+			word.erase(i, 1);
+			i--;
+		}
+	en:;
+	}
+	return word;
+}
 void Table::Search(string key,Table **head)
 {
+	key = RemoveSpecialCharacterWithoutSpace(key);
 	key = ConvLow(key);
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	Trie Accessor;
