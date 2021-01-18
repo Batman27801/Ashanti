@@ -232,7 +232,7 @@ void Table::Search(string key,Table **head)
 			while ((temp + pos)->item != WordArr[i])
 			{
 
-				if (pos==6000)
+				if (pos>=16000)
 				{
 					FoundFlag = 0;
 					break;
