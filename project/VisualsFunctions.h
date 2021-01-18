@@ -18,6 +18,7 @@ public:
 	void clear_screen();
 	void normal_spacing();
 	void normally_continue();
+	void loading();
 	void home_page();
 	void end_page();
 	void project_Runner();
