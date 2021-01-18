@@ -107,6 +107,12 @@ void CleanQ::filecleaner(string filename)
 			}
 		}
 	}
-	cout << "The total characters stored in all files were :" << charactercount << endl;
-	cout << "The total words stored in all files are : " << wordcount;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+	cout << "The total characters stored in all files were :";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	cout << charactercount << endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+	cout << "The total words stored in all files are : ";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	cout << wordcount;
 }

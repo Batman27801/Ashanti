@@ -50,20 +50,55 @@ void VisualsFunctions::end_page()
 	cout << endl;
 	system("pause");
 }
+void VisualsFunctions::loading()
+{
+	ifstream is("LoadingMsg.txt");
+	char ch;
+	while (is.get(ch))
+	{
+		cout << ch;
+	}
+}
 void VisualsFunctions::project_Runner()
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+	loading();
+	center_continue();
+	center_continue();
 	Table TableAccessor;
 	Table* TableHead = NULL;
 	TableAccessor.InitializeTotWords(25000);
 	TableAccessor.InitializeTable(&TableHead);
 	TableAccessor.BuildTable(&TableHead, "Doc1.txt", 1);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+	center_continue();
+	cout << "Document 1 Loaded!";
 	TableAccessor.BuildTable(&TableHead, "Doc2.txt", 2);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
+	center_continue();
+	cout << "Document 2 Loaded!";
 	TableAccessor.BuildTable(&TableHead, "Doc3.txt", 3);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5);
+	center_continue();
+	cout << "Document 3 Loaded!";
 	TableAccessor.BuildTable(&TableHead, "Doc4.txt", 4);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+	center_continue();
+	cout << "Document 4 Loaded!";
 	TableAccessor.BuildTable(&TableHead, "Doc5.txt", 5);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	center_continue();
+	cout << "Document 5 Loaded!";
 	TableAccessor.BuildTable(&TableHead, "Doc6.txt", 6);
+	center_continue();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	cout << "Document 6 Loaded!";
+	center_continue();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	system("Pause");
+	system("CLS");
 	Table* temp = TableHead;
-
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 	int choice;
 	char sent[200];
 	string Sentence;
@@ -104,16 +139,21 @@ void VisualsFunctions::project_Runner()
 			string filename,*otherfiles;
 			clear_screen();
 			center_newline();
-			cout << "Enter name of the file with its extension(only .txt suported)";
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+			cout << "Enter name of the file you want to clean and break into six sub documents(only .txt suported): ";
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 			getline(cin, filename);
 			center_continue();
-			cout << "Enter The Names of Six broken files with extension(only .txt suported): ";
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+			cout << "Enter The Names of Six documents you wish to recieve(only .txt suported): ";
 			otherfiles = new string[6];
 			for (int i = 0; i < 6; i++)
 			{
 				center_continue();
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 				cout << "File # " << i + 1 << ": ";
 				fflush(stdin);
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 				getline(cin, otherfiles[i]);
 			}
 			CleanQ obj;

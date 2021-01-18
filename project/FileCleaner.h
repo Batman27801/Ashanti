@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include<cctype>
+#include <Windows.h>
 #pragma once
 using namespace std;
 
