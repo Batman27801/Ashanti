@@ -101,12 +101,23 @@ void VisualsFunctions::project_Runner()
 		}
 		else if (choice == 2)
 		{
-			string filename;
+			string filename,*otherfiles;
 			clear_screen();
 			center_newline();
 			cout << "Enter name of the file with its extension(only .txt suported)";
 			getline(cin, filename);
+			center_continue();
+			cout << "Enter The Names of Six broken files with extension(only .txt suported): ";
+			otherfiles = new string[6];
+			for (int i = 0; i < 6; i++)
+			{
+				center_continue();
+				cout << "File # " << i + 1 << ": ";
+				fflush(stdin);
+				getline(cin, otherfiles[i]);
+			}
 			CleanQ obj;
+			obj.setDocs(otherfiles);
 			obj.filecleaner(filename);
 			center_continue();
 			system("pause");

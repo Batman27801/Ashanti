@@ -50,7 +50,13 @@ char CleanQ::Qfront()
 	char c = queue[front];
 	return c;
 }
-
+void CleanQ::setDocs(string* names)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		docs[i] = names[i];
+	}
+}
 void CleanQ::replacedash()
 {
 	queue[front] = ' ';

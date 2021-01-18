@@ -6,7 +6,7 @@ using namespace std;
 
 class CleanQ
 {
-	string docs[6] = { "Doc1.txt", "Doc2.txt", "Doc3.txt", "Doc4.txt", "Doc5.txt", "Doc6.txt" };
+	string docs[6];
 	int front, rear, capacity, newlines, wordcount, charactercount;
 	char* queue;
 public:
@@ -14,8 +14,8 @@ public:
 	char& enqueue();
 	char dequeue();
 	char Qrecent();
-
 	char Qfront();
+	void setDocs(string* names);
 	void replacedash();
 	void filecleaner(string filename);
 	~CleanQ();
