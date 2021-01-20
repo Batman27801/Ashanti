@@ -62,7 +62,8 @@ void Table::InsertAtBegining(Table **head)
 }
 void Table::InitializeTable(Table **head)
 {
-	*head = new Table[60000];
+	*head = new Table[25000];
+	//*head = new Table[60000];
 	Table* temp = *head;
 	fstream file;
 	file.open("StopWords.txt",ios::in);
