@@ -87,8 +87,32 @@ void Postings:: InsertAtPos(Postings** head, int data, int pos)
         return;
     }
 }
+
 void Postings::PrintPostings(Postings* head)
 {
+    Postings* obj = head;
+    while (obj != NULL)
+    {
+        Postings* Swapper = obj;
+        if (obj->next != NULL)
+        {
+            Swapper = Swapper->next;
+        }
+        while (Swapper != NULL)
+        {
+            if (Swapper->freq > obj->freq)
+            {
+                int tempid = obj->data;
+                int tempfreq = obj->freq;
+                obj->data = Swapper->data;
+                obj->freq = Swapper->freq;
+                Swapper->data = tempid;
+                Swapper->freq = tempfreq;
+            }
+            Swapper = Swapper->next;
+        }
+        obj = obj->next;
+    }
     char ch = 219;
     int count = 0, * Doc_IDs, * frequencies, max_freq;
     Postings* temp1 = head;

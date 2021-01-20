@@ -1,3 +1,9 @@
-﻿  Table.cpp
+﻿  Postings.cpp
+C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\Postings.cpp(116,15): warning C4309: 'initializing': truncation of constant value
+  Table.cpp
 C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\Table.cpp(222,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  VisualsFunctions.cpp
+C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\project\VisualsFunctions.cpp(103,7): warning C4101: 'sent': unreferenced local variable
+  main.cpp
+  Generating Code...
   project.vcxproj -> C:\Users\fawad\OneDrive\Documents\Programming files\Ashanti\x64\Debug\project.exe
